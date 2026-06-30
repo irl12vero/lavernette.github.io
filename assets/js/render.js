@@ -178,7 +178,16 @@
   //
   // Configuration requise : voir /data/google_drive_config.js
   // (uniquement l'identifiant du dossier).
-  function render_documents() {
+  function render_all_documents() {
+    const el = document.getElementById("documents-contenu");
+    if (!el) return;
+
+    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    const dossierId = cfg.dossier_id;
+    render_documents(dossierId,el)
+  }  
+  
+  function render_documents(dossierId,el) {
     const el = document.getElementById("documents-contenu");
     if (!el) return;
 
@@ -272,7 +281,7 @@
     faq: [render_faq],
     bureau: [render_bureau],
     annuaire: [render_annuaire],
-    documents: [render_documents],
+    documents: [render_all_documents],
     dechets: [render_dechets_bacs, render_dechets_points_depot],
     prestataires: [render_prestataires_artisans]
   };
