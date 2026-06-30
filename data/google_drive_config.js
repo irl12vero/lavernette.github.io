@@ -38,8 +38,9 @@
  * 4) Collez cet identifiant ci-dessous, puis enregistrez le fichier.
  *    Rechargez la page documents.html : le dossier doit s'afficher.
  * ────────────────────────────────────────────────────────────────────
+ * https://drive.google.com/drive/folders/16r4m5_LRRhEPDLj2fdy1gifO06YNf0tH?usp=sharing
  */
 window.SITE_CONFIG = window.SITE_CONFIG || {};
 window.SITE_CONFIG.google_drive = {
-  "dossier_id": "VOTRE_ID_DE_DOSSIER"
+  "dossier_id": "16r4m5_LRRhEPDLj2fdy1gifO06YNf0tH"
 };
