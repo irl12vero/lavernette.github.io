@@ -166,50 +166,117 @@
   }
 
   // ──────────────────────────────────────────────────────────────────
-  // Documents — contenu DYNAMIQUE provenant d'un dossier Google Drive
+  // Documents — contenu DYNAMIQUE provenant de dossiers Google Drive
   // ──────────────────────────────────────────────────────────────────
-  // Contrairement aux autres blocs de cette page (qui lisent un fichier
-  // /data/xxx.js), le contenu n'est PAS stocké dans le site : la page
-  // affiche directement la vue Google Drive du dossier configuré, dans
-  // un cadre intégré (iframe). Pour ajouter/retirer un document, il
-  // suffit d'ajouter/retirer le fichier dans le dossier Drive — aucune
-  // modification du site n'est nécessaire, et aucune clé technique à
-  // créer ou maintenir (contrairement à l'API Google Drive).
+  // La page Documents affiche le contenu de DEUX dossiers Google Drive
+  // distincts (comptes-rendus / règlement de copropriété), chacun listé
+  // via l'API Google Drive (lecture seule) plutôt qu'un simple cadre
+  // intégré : cela permet de connaître le nombre réel de fichiers pour
+  // adapter la hauteur du bloc, et de limiter l'affichage à 10 fichiers
+  // visibles (ascenseur au-delà) plutôt que de dépendre de l'aperçu
+  // Google Drive natif.
   //
   // Configuration requise : voir /data/google_drive_config.js
-  // (uniquement l'identifiant du dossier).
-  function render_documents() {
-    const el = document.getElementById("documents-contenu");
+  // (identifiants des deux dossiers + clé API Google Drive en lecture
+  // seule).
+
+  const DRIVE_ROW_HEIGHT = 46;     // hauteur d'une ligne de fichier (px), doit matcher le CSS
+  const DRIVE_MAX_VISIBLE_ROWS = 10; // au-delà : hauteur figée + ascenceur
+
+  const DRIVE_ICONS = {
+    "application/vnd.google-apps.folder": "📁",
+    "application/pdf": "📕",
+    "application/vnd.google-apps.document": "📝",
+    "application/vnd.google-apps.spreadsheet": "📊",
+    "application/vnd.google-apps.presentation": "📑",
+    "image/": "🖼️",
+    "video/": "🎞️",
+  };
+
+  function iconeFichier(mimeType) {
+    if (DRIVE_ICONS[mimeType]) return DRIVE_ICONS[mimeType];
+    for (const prefix of Object.keys(DRIVE_ICONS)) {
+      if (prefix.endsWith("/") && mimeType.startsWith(prefix)) return DRIVE_ICONS[prefix];
+    }
+    return "📄";
+  }
+
+  // Affiche le contenu d'UN dossier Google Drive (fichiers + sous-dossiers)
+  // dans le conteneur #elId, sous forme de liste, avec hauteur qui s'adapte
+  // au nombre d'éléments (limitée à 10 lignes visibles, ascenseur ensuite).
+  async function renderDriveFolder(elId, dossierId, apiKey) {
+    const el = document.getElementById(elId);
     if (!el) return;
 
-    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
-    const dossierId = cfg.dossier_id;
-
-    // Configuration absente ou laissée à la valeur d'exemple : message
-    // d'aide pour le webmestre plutôt qu'un cadre vide.
     if (!dossierId || dossierId.startsWith("VOTRE_")) {
       el.innerHTML = `<div class="data-error">
-        ⚠️ Le dossier Google Drive n'est pas encore configuré.<br>
+        ⚠️ Ce dossier Google Drive n'est pas encore configuré.<br>
         Ouvrez le fichier <code>data/google_drive_config.js</code> et suivez les instructions
         en commentaire pour renseigner l'identifiant du dossier.
       </div>`;
       return;
     }
-
-    // "embeddedfolderview" est la vue Google Drive prévue pour être
-    // intégrée dans une page tierce : elle affiche le contenu du
-    // dossier (fichiers ET sous-dossiers, navigables) sans nécessiter
-    // de clé API ni d'appel JavaScript à l'API Drive.
-    const url = `https://drive.google.com/embeddedfolderview?id=${encodeURIComponent(dossierId)}#list`;
-    el.innerHTML = `
-      <div class="content-block" style="padding:0; overflow:hidden;">
-        <iframe
-          src="${esc(url)}"
-          title="Documents — dossier Google Drive"
-          style="width:100%; height:520px; border:0; display:block;"
-          loading="lazy">
-        </iframe>
+    if (!apiKey || apiKey.startsWith("VOTRE_")) {
+      el.innerHTML = `<div class="data-error">
+        ⚠️ La clé API Google Drive n'est pas encore configurée.<br>
+        Ouvrez le fichier <code>data/google_drive_config.js</code> et suivez les instructions
+        en commentaire pour la renseigner.
       </div>`;
+      return;
+    }
+
+    try {
+      const q = encodeURIComponent(`'${dossierId}' in parents and trashed = false`);
+      const fields = encodeURIComponent("files(id,name,mimeType,webViewLink)");
+      const url = `https://www.googleapis.com/drive/v3/files?q=${q}&fields=${fields}&orderBy=folder,name&pageSize=200&key=${encodeURIComponent(apiKey)}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const fichiers = data.files || [];
+
+      if (!fichiers.length) {
+        el.innerHTML = `<p class="data-error">Aucun document disponible pour le moment dans ce dossier.</p>`;
+        return;
+      }
+
+      const lignes = fichiers
+        .map(
+          (f) => `
+        <li class="drive-file-row">
+          <a href="${esc(f.webViewLink)}" target="_blank" rel="noopener">
+            <span class="drive-file-icon">${iconeFichier(f.mimeType)}</span>
+            <span class="drive-file-name">${esc(f.name)}</span>
+          </a>
+        </li>`
+        )
+        .join("");
+
+      // Hauteur adaptée au nombre réel de documents (jusqu'à 10 lignes) ;
+      // au-delà de 10, la hauteur est figée à 10 lignes et un ascenseur
+      // (overflow-y: auto) apparaît pour les fichiers supplémentaires.
+      const lignesVisibles = Math.min(fichiers.length, DRIVE_MAX_VISIBLE_ROWS);
+      const hauteur = lignesVisibles * DRIVE_ROW_HEIGHT;
+      const ascenceur = fichiers.length > DRIVE_MAX_VISIBLE_ROWS;
+
+      el.innerHTML = `
+        <div class="content-block" style="padding:8px 0;">
+          <ul class="drive-files-list" style="height:${hauteur}px; overflow-y:${ascenceur ? "auto" : "hidden"};">
+            ${lignes}
+          </ul>
+        </div>`;
+    } catch (err) {
+      el.innerHTML = `<div class="data-error">
+        ⚠️ Impossible de charger la liste des documents (${esc(err.message)}).<br>
+        Vérifiez que le dossier est bien partagé en "Lecteur — Tous les utilisateurs disposant du lien"
+        et que la clé API est correctement configurée dans <code>data/google_drive_config.js</code>.
+      </div>`;
+    }
+  }
+
+  function render_documents() {
+    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    renderDriveFolder("documents-contenu", cfg.dossier_id, cfg.api_key);
+    renderDriveFolder("reglement-contenu", cfg.reglement_dossier_id, cfg.api_key);
   }
 
   async function render_dechets_bacs() {
