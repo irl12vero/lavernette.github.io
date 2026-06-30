@@ -84,9 +84,16 @@
       <div class="skeleton" style="height:520px"></div>
     </div>
 
-    <!-- Bloc : Règlement de copropriété — modifiez le texte ci-dessous directement dans ce fichier -->
-    <div id="documents-reglement-contenu">
-      <div class="skeleton" style="height:520px"></div>
+    <!-- Bloc : Règlement de copropriété — récupéré en direct depuis un AUTRE
+         dossier Google Drive (voir data/google_drive_config.js ->
+         dossier_id_reglements). Généré dynamiquement par
+         render.js -> render_reglements(). Ne pas modifier le contenu de ce
+         <div> à la main : il est remplacé à chaque chargement de la page. -->
+    <div class="content-block">
+      <h3>Règlement de copropriété</h3>
+      <div id="reglements-contenu">
+        <div class="skeleton" style="height:520px"></div>
+      </div>
     </div>
 
     <div class="encadre-loi">

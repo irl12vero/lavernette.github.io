@@ -178,26 +178,12 @@
   //
   // Configuration requise : voir /data/google_drive_config.js
   // (uniquement l'identifiant du dossier).
-  function render_all_documents() {
-    const el1 = document.getElementById("documents-contenu");
-    if (!el1) return;
+  function render_documents() {
+    const el = document.getElementById("documents-contenu");
+    if (!el) return;
 
-    const cfg1 = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
-    const dossierId = cfg1.dossier_id;
-
-    render_documents(el1, dossierId1);
-
-    const el2 = document.getElementById("documents-reglement-contenu");
-    if (!el2) return;
-
-    const cfg2 = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
-    const dossierId2 = cfg2.reglement_dossier_id;
-
-    render_documents(el2, dossierId2);
-  }
-
-  function render_documents(el, dossierId) {
-    
+    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    const dossierId = cfg.dossier_id;
 
     // Configuration absente ou laissée à la valeur d'exemple : message
     // d'aide pour le webmestre plutôt qu'un cadre vide.
@@ -220,6 +206,40 @@
         <iframe
           src="${esc(url)}"
           title="Documents — dossier Google Drive"
+          style="width:100%; height:520px; border:0; display:block;"
+          loading="lazy">
+        </iframe>
+      </div>`;
+  }
+
+  // ──────────────────────────────────────────────────────────────────
+  // Bloc "Règlements" de la page Documents — même principe que
+  // render_documents() ci-dessus, mais pointe vers un AUTRE dossier
+  // Google Drive (dédié au règlement de copropriété), configuré dans
+  // /data/google_drive_config.js -> dossier_id_reglements.
+  // ──────────────────────────────────────────────────────────────────
+  function render_reglements() {
+    const el = document.getElementById("reglements-contenu");
+    if (!el) return;
+
+    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    const dossierId = cfg.dossier_id_reglements;
+
+    if (!dossierId || dossierId.startsWith("VOTRE_")) {
+      el.innerHTML = `<div class="data-error">
+        ⚠️ Le dossier Google Drive des règlements n'est pas encore configuré.<br>
+        Ouvrez le fichier <code>data/google_drive_config.js</code> et renseignez
+        <code>dossier_id_reglements</code>.
+      </div>`;
+      return;
+    }
+
+    const url = `https://drive.google.com/embeddedfolderview?id=${encodeURIComponent(dossierId)}#list`;
+    el.innerHTML = `
+      <div class="content-block" style="padding:0; overflow:hidden;">
+        <iframe
+          src="${esc(url)}"
+          title="Règlements — dossier Google Drive"
           style="width:100%; height:520px; border:0; display:block;"
           loading="lazy">
         </iframe>
@@ -286,7 +306,7 @@
     faq: [render_faq],
     bureau: [render_bureau],
     annuaire: [render_annuaire],
-    documents: [render_all_documents],
+    documents: [render_documents, render_reglements],
     dechets: [render_dechets_bacs, render_dechets_points_depot],
     prestataires: [render_prestataires_artisans]
   };
