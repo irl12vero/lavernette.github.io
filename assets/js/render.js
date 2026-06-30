@@ -178,12 +178,25 @@
   //
   // Configuration requise : voir /data/google_drive_config.js
   // (uniquement l'identifiant du dossier).
-  function render_documents() {
-    const el = document.getElementById("documents-contenu");
-    if (!el) return;
+  function render_all_documents() {
+    const el1 = document.getElementById("documents-contenu");
+    if (!el1) return;
 
-    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
-    const dossierId = cfg.dossier_id;
+    const cfg1 = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    const dossierId = cfg1.dossier_id;
+
+    render_documents(el1, dossierId1);
+    const el2 = document.getElementById("documents-contenu");
+    if (!el2) return;
+
+    const cfg2 = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    const dossierId2 = cfg2.reglement_dossier_id;
+
+    render_documents(el2, dossierId2);
+  }
+
+  function render_documents(el, dossierId) {
+    
 
     // Configuration absente ou laissée à la valeur d'exemple : message
     // d'aide pour le webmestre plutôt qu'un cadre vide.
@@ -272,7 +285,7 @@
     faq: [render_faq],
     bureau: [render_bureau],
     annuaire: [render_annuaire],
-    documents: [render_documents],
+    documents: [render_all_documents],
     dechets: [render_dechets_bacs, render_dechets_points_depot],
     prestataires: [render_prestataires_artisans]
   };
