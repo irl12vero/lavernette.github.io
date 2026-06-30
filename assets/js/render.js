@@ -178,7 +178,7 @@
   //
   // Configuration requise : voir /data/google_drive_config.js
   // (uniquement l'identifiant du dossier).
-  function render_documents(dossierId,el) {
+  function render_documents() {
     const el = document.getElementById("documents-contenu");
     if (!el) return;
 
