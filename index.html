@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil — Résidences La V.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="accueil">
+
+<!-- ════════════════════════════════════════════════════════════════
+     BANDEAU FLASH INFOS
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Le contenu défilant (#flash-ticker) est rempli par
+     assets/js/render.js -> render_flash_infos() au chargement de
+     CHAQUE page (voir tout en bas de ce fichier).
+     Pour modifier les infos qui défilent : onglet "flash_infos" du Google Sheet
+     ════════════════════════════════════════════════════════════════ -->
+<div class="flash-infos">
+  <div class="flash-infos-inner">
+    <div class="flash-label">⚡ Flash Infos</div>
+    <div class="flash-items">
+      <div class="flash-ticker skeleton" id="flash-ticker"></div>
+    </div>
+    <a class="flash-btn" href="flashinfos.html" title="Voir tous les Flash Infos">Voir tout →</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     EN-TÊTE + MENU DE NAVIGATION
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Pour ajouter/retirer un lien de menu : modifier le bloc <nav>
+     ci-dessous, DANS CHAQUE fichier .html (pas de fichier commun).
+     Le lien de la page actuellement affichée porte class="active".
+     ════════════════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><img src="assets/img/logo/logo.png" alt="Logo Résidences La V." class="logo-icon-img"></div>
+      <div class="logo-text">
+        <h1>Résidences La V.</h1>
+        <p>Espace copropriétaires privé</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html" class="active">Accueil</a>
+      <a href="flashinfos.html">⚡ Flash Infos</a>
+      <a href="urgences.html">🚨 Urgences</a>
+      <a href="eau.html">💧 Eau du canal</a>
+      <a href="stationnement.html">🚗 Stationnement</a>
+      <a href="dechets.html">🗑️ Déchets</a>
+      <a href="prestataires.html">🔧 Prestataires</a>
+      <a href="documents.html">📁 Documents</a>
+      <a href="bureau.html">👥 Bureau</a>
+      <a href="annuaire.html">📒 Annuaire</a>
+      <a href="faq.html">❓ FAQ</a>
+      <a href="contact.html">✉️ Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════ PAGE : ACCUEIL ══════════════════ -->
+<!-- Fichier : index.html — modifiez uniquement le contenu ci-dessous pour cette page. -->
+<div class="page active">
+  <!-- Bloc : grand bandeau de bienvenue en haut de la page d'accueil -->
+  <div class="hero">
+    <h2>Bienvenue, résidents</h2>
+    <p>Toutes les informations utiles de la copropriété, en un seul endroit.</p>
+    <button class="btn-urgence" onclick="location.href='urgences.html'">🚨 Accès urgences</button>
+  </div>
+  <div class="section">
+    <div class="alerte-brouillon">⚙️ <strong>Version brouillon</strong> — Démonstration. Le contenu entre [crochets] sera complété par le bureau.</div>
+    <span class="section-titre">Accès rapides</span>
+    <!-- Bloc : grille des "cartes" cliquables vers chaque rubrique du site.
+         Pour ajouter/retirer une carte, copiez/collez une ligne <div class="card">...</div>
+         et adaptez : icône, titre, description, et le lien location.href='xxx.html' -->
+    <div class="grid-2">
+      <div class="card" onclick="location.href='flashinfos.html'" style="border-color:var(--rouge)"><span class="card-icon">⚡</span><div class="card-titre" style="color:var(--rouge)">Flash Infos</div><div class="card-desc">Actualités, alertes, dates importantes</div></div>
+      <div class="card" onclick="location.href='urgences.html'"><span class="card-icon">🚨</span><div class="card-titre">Urgences</div><div class="card-desc">Fuite, incendie, panne électrique</div></div>
+      <div class="card" onclick="location.href='eau.html'"><span class="card-icon">💧</span><div class="card-titre">Eau du canal</div><div class="card-desc">Procédures, guide photos, incidents</div></div>
+      <div class="card" onclick="location.href='stationnement.html'"><span class="card-icon">🚗</span><div class="card-titre">Stationnement</div><div class="card-desc">Règles et consignes de circulation</div></div>
+      <div class="card" onclick="location.href='dechets.html'"><span class="card-icon">🗑️</span><div class="card-titre">Déchets & collecte</div><div class="card-desc">Calendrier, tri, encombrants</div></div>
+      <div class="card" onclick="location.href='prestataires.html'"><span class="card-icon">🔧</span><div class="card-titre">Prestataires</div><div class="card-desc">Jardinier, contrats, artisans</div></div>
+      <div class="card" onclick="location.href='documents.html'"><span class="card-icon">📁</span><div class="card-titre">Documents</div><div class="card-desc">AG, budgets, guides pratiques</div></div>
+      <div class="card" onclick="location.href='faq.html'"><span class="card-icon">❓</span><div class="card-titre">FAQ</div><div class="card-desc">Questions fréquentes validées</div></div>
+      <div class="card" onclick="location.href='contact.html'"><span class="card-icon">✉️</span><div class="card-titre">Poser une question</div><div class="card-desc">Formulaire vers le bureau</div></div>
+      <div class="card" onclick="location.href='bureau.html'"><span class="card-icon">👥</span><div class="card-titre">Bureau AG</div><div class="card-desc">Membres, fonctions, contacts</div></div>
+      <div class="card" onclick="location.href='annuaire.html'"><span class="card-icon">📒</span><div class="card-titre">Annuaire résidents</div><div class="card-desc">Coordonnées des copropriétaires volontaires</div></div>
+      <div class="card" onclick="location.href='nouveaux.html'"><span class="card-icon">👋</span><div class="card-titre">Nouveaux arrivants</div><div class="card-desc">Guide d'accueil et règles essentielles</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PIED DE PAGE
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <p><strong>Résidences La V.</strong> — Espace copropriétaires privé</p>
+  <p style="margin-top:6px">Informations validées par le bureau de copropriété — Loi du 10 juillet 1965<br>
+  <a href="rgpd.html" style="cursor:pointer">🔒 Politique de confidentialité (RGPD)</a></p>
+  <p style="margin-top:8px; opacity:.5; font-size:.75rem">Version brouillon — Résidences La V. © 2025</p>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCRIPTS
+     1. data/google_sheet_config.js -> identifiant du Google Sheet
+                                 contenant toutes les données du site
+                                 (voir ce fichier pour la configuration)
+     2. data/google_drive_config.js -> identifiant du dossier Google
+                                 Drive affiché sur la page Documents
+     3. assets/js/data.js    -> accès aux données (lecture du Google
+                                 Sheet ci-dessus, onglet par onglet)
+     4. assets/js/render.js  -> gabarits HTML pour chaque bloc dynamique
+     5. assets/js/app.js     -> FAQ, formulaires, chargement des données
+                                 de LA PAGE COURANTE (voir data-page sur
+                                 la balise <body> en haut de ce fichier)
+     Ces 5 lignes doivent être présentes, identiques, sur CHAQUE page
+     du site.
+     ════════════════════════════════════════════════════════════════ -->
+<script src="data/google_sheet_config.js"></script>
+<script src="data/google_drive_config.js"></script>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

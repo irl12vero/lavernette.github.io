@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urgences — Résidences La V.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="urgences">
+
+<!-- ════════════════════════════════════════════════════════════════
+     BANDEAU FLASH INFOS
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Le contenu défilant (#flash-ticker) est rempli par
+     assets/js/render.js -> render_flash_infos() au chargement de
+     CHAQUE page (voir tout en bas de ce fichier).
+     Pour modifier les infos qui défilent : onglet "flash_infos" du Google Sheet
+     ════════════════════════════════════════════════════════════════ -->
+<div class="flash-infos">
+  <div class="flash-infos-inner">
+    <div class="flash-label">⚡ Flash Infos</div>
+    <div class="flash-items">
+      <div class="flash-ticker skeleton" id="flash-ticker"></div>
+    </div>
+    <a class="flash-btn" href="flashinfos.html" title="Voir tous les Flash Infos">Voir tout →</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     EN-TÊTE + MENU DE NAVIGATION
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Pour ajouter/retirer un lien de menu : modifier le bloc <nav>
+     ci-dessous, DANS CHAQUE fichier .html (pas de fichier commun).
+     Le lien de la page actuellement affichée porte class="active".
+     ════════════════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><img src="assets/img/logo/logo.png" alt="Logo Résidences La V." class="logo-icon-img"></div>
+      <div class="logo-text">
+        <h1>Résidences La V.</h1>
+        <p>Espace copropriétaires privé</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="flashinfos.html">⚡ Flash Infos</a>
+      <a href="urgences.html" class="active">🚨 Urgences</a>
+      <a href="eau.html">💧 Eau du canal</a>
+      <a href="stationnement.html">🚗 Stationnement</a>
+      <a href="dechets.html">🗑️ Déchets</a>
+      <a href="prestataires.html">🔧 Prestataires</a>
+      <a href="documents.html">📁 Documents</a>
+      <a href="bureau.html">👥 Bureau</a>
+      <a href="annuaire.html">📒 Annuaire</a>
+      <a href="faq.html">❓ FAQ</a>
+      <a href="contact.html">✉️ Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════ PAGE : URGENCES ══════════════════ -->
+<!-- Fichier : urgences.html — modifiez uniquement le contenu ci-dessous pour cette page. -->
+<div class="page active">
+  <div class="section">
+    <span class="section-titre">🚨 Urgences</span>
+
+    <!-- Bloc : Contacts d'urgence 24h/24 — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Contacts d'urgence <span class="tag tag-rouge">24h/24</span></h3>
+      <div class="contacts-grid" id="urgences-contacts">
+        <div class="skeleton" style="height:90px"></div><div class="skeleton" style="height:90px"></div><div class="skeleton" style="height:90px"></div>
+      </div>
+    </div>
+
+    <!-- Bloc : 🔥 Incendie — Que faire ? — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>🔥 Incendie — Que faire ?</h3>
+      <p style="color:var(--rouge); font-weight:700; margin-bottom:12px">⚠️ Votre sécurité et celle des autres d'abord — aucun bien ne vaut une vie.</p>
+      <ul>
+        <li><strong>1. Donnez l'alerte immédiatement</strong> — appelez le 18 (pompiers) ou le 112</li>
+        <li><strong>2. Évacuez sans attendre</strong> — ne prenez pas l'ascenseur, ne revenez jamais en arrière</li>
+        <li><strong>3. Fermez les portes derrière vous</strong> sans les verrouiller — cela ralentit la propagation du feu</li>
+        <li><strong>4. Signalez les personnes présentes</strong> aux pompiers dès leur arrivée</li>
+        <li><strong>5. Ne tentez pas d'éteindre seul</strong> un feu qui s'est propagé — extincteur uniquement pour un feu naissant et maîtrisable</li>
+        <li><strong>6. Rejoignez le point de rassemblement</strong> : [emplacement à compléter par le bureau]</li>
+        <li><strong>7. Prévenez le bureau</strong> dès que possible pour coordonner avec les secours</li>
+      </ul>
+      <div class="encadre-loi">
+        <strong>Point de rassemblement :</strong> [À définir par le bureau et affiché à l'entrée de la résidence]<br>
+        <strong>Extincteurs parties communes :</strong> [Emplacements à compléter]
+      </div>
+    </div>
+
+    <!-- Bloc : 💧 Fuite d'eau — Que faire ? — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>💧 Fuite d'eau — Que faire ?</h3>
+      <ul>
+        <li><strong>1.</strong> Coupez votre vanne d'arrêt individuelle (sous l'évier ou au compteur)</li>
+        <li><strong>2.</strong> Si la fuite vient des parties communes : fermez la vanne générale (voir rubrique Eau du canal)</li>
+        <li><strong>3.</strong> Prévenez le bureau immédiatement</li>
+        <li><strong>4.</strong> En cas de dégât important, contactez votre assurance habitation</li>
+      </ul>
+    </div>
+
+    <!-- Bloc : ⚡ Coupure électrique — Que faire ? — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>⚡ Coupure électrique — Que faire ?</h3>
+      <ul>
+        <li><strong>1.</strong> Vérifiez votre tableau électrique individuel (disjoncteur déclenché ?)</li>
+        <li><strong>2.</strong> Vérifiez si vos voisins sont également touchés</li>
+        <li><strong>3.</strong> Si panne générale : contactez EDF au 09 726 750 [XX]</li>
+        <li><strong>4.</strong> Signalez au bureau si le problème concerne les parties communes</li>
+      </ul>
+    </div>
+
+    <div class="encadre-loi" style="margin: 0 0 20px 0">
+      <strong>Cadre légal :</strong> Conformément à la loi du 10 juillet 1965 régissant les copropriétés, le bureau est tenu d'assurer la sécurité des parties communes. Les consignes de sécurité incendie sont affichées dans les espaces communs (art. R.123-13 du Code de la construction).
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PIED DE PAGE
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <p><strong>Résidences La V.</strong> — Espace copropriétaires privé</p>
+  <p style="margin-top:6px">Informations validées par le bureau de copropriété — Loi du 10 juillet 1965<br>
+  <a href="rgpd.html" style="cursor:pointer">🔒 Politique de confidentialité (RGPD)</a></p>
+  <p style="margin-top:8px; opacity:.5; font-size:.75rem">Version brouillon — Résidences La V. © 2025</p>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCRIPTS
+     1. data/google_sheet_config.js -> identifiant du Google Sheet
+                                 contenant toutes les données du site
+                                 (voir ce fichier pour la configuration)
+     2. data/google_drive_config.js -> identifiant du dossier Google
+                                 Drive affiché sur la page Documents
+     3. assets/js/data.js    -> accès aux données (lecture du Google
+                                 Sheet ci-dessus, onglet par onglet)
+     4. assets/js/render.js  -> gabarits HTML pour chaque bloc dynamique
+     5. assets/js/app.js     -> FAQ, formulaires, chargement des données
+                                 de LA PAGE COURANTE (voir data-page sur
+                                 la balise <body> en haut de ce fichier)
+     Ces 5 lignes doivent être présentes, identiques, sur CHAQUE page
+     du site.
+     ════════════════════════════════════════════════════════════════ -->
+<script src="data/google_sheet_config.js"></script>
+<script src="data/google_drive_config.js"></script>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

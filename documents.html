@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents — Résidences La V.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="documents">
+
+<!-- ════════════════════════════════════════════════════════════════
+     BANDEAU FLASH INFOS
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Le contenu défilant (#flash-ticker) est rempli par
+     assets/js/render.js -> render_flash_infos() au chargement de
+     CHAQUE page (voir tout en bas de ce fichier).
+     Pour modifier les infos qui défilent : onglet "flash_infos" du Google Sheet
+     ════════════════════════════════════════════════════════════════ -->
+<div class="flash-infos">
+  <div class="flash-infos-inner">
+    <div class="flash-label">⚡ Flash Infos</div>
+    <div class="flash-items">
+      <div class="flash-ticker skeleton" id="flash-ticker"></div>
+    </div>
+    <a class="flash-btn" href="flashinfos.html" title="Voir tous les Flash Infos">Voir tout →</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     EN-TÊTE + MENU DE NAVIGATION
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Pour ajouter/retirer un lien de menu : modifier le bloc <nav>
+     ci-dessous, DANS CHAQUE fichier .html (pas de fichier commun).
+     Le lien de la page actuellement affichée porte class="active".
+     ════════════════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><img src="assets/img/logo/logo.png" alt="Logo Résidences La V." class="logo-icon-img"></div>
+      <div class="logo-text">
+        <h1>Résidences La V.</h1>
+        <p>Espace copropriétaires privé</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="flashinfos.html">⚡ Flash Infos</a>
+      <a href="urgences.html">🚨 Urgences</a>
+      <a href="eau.html">💧 Eau du canal</a>
+      <a href="stationnement.html">🚗 Stationnement</a>
+      <a href="dechets.html">🗑️ Déchets</a>
+      <a href="prestataires.html">🔧 Prestataires</a>
+      <a href="documents.html" class="active">📁 Documents</a>
+      <a href="bureau.html">👥 Bureau</a>
+      <a href="annuaire.html">📒 Annuaire</a>
+      <a href="faq.html">❓ FAQ</a>
+      <a href="contact.html">✉️ Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════ PAGE : DOCUMENTS ══════════════════ -->
+<!-- Fichier : documents.html — modifiez uniquement le contenu ci-dessous pour cette page. -->
+<div class="page active">
+  <div class="section">
+    <span class="section-titre">📁 Documents</span>
+
+    <!-- Bloc : note explicative sur le fonctionnement dynamique de cette page -->
+    <div style="background:#f0f4f8; border-left:4px solid var(--bleu); border-radius:0 6px 6px 0; padding:14px 18px; margin-bottom:20px; font-size:.85rem; color:#333;">
+      <strong style="color:var(--bleu)">ℹ️ Liste mise à jour automatiquement</strong><br>
+      Les documents ci-dessous sont récupérés en direct depuis le dossier Google Drive du
+      bureau — il suffit d'ajouter ou retirer un fichier dans ce dossier pour qu'il
+      apparaisse ou disparaisse ici, sans toucher au site. Configuration du dossier :
+      voir <code>data/google_drive_config.js</code>.
+    </div>
+
+    <!-- Bloc : liste des documents, générée dynamiquement par
+         render.js -> render_documents() à partir du dossier Google
+         Drive configuré dans data/google_drive_config.js. Ne pas
+         modifier le contenu de ce <div> à la main : il est remplacé
+         à chaque chargement de la page. -->
+    <div id="documents-contenu">
+      <div class="skeleton" style="height:520px"></div>
+    </div>
+
+    <!-- Bloc : Règlement de copropriété — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Règlement de copropriété</h3>
+      <ul>
+        <li><a href="#" style="color:var(--vert-mid);font-weight:600">📄 Règlement de copropriété (version en vigueur)</a></li>
+        <li><a href="#" style="color:var(--vert-mid);font-weight:600">📄 Modifications et avenants</a></li>
+      </ul>
+    </div>
+
+    <div class="encadre-loi">
+      <strong>Cadre légal :</strong> Conformément à l'article 18 de la loi du 10 juillet 1965, le syndic (ou bureau bénévole) est tenu de mettre les documents de gestion à disposition des copropriétaires. Les documents mis en ligne ici constituent la version officielle validée par l'AG.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PIED DE PAGE
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <p><strong>Résidences La V.</strong> — Espace copropriétaires privé</p>
+  <p style="margin-top:6px">Informations validées par le bureau de copropriété — Loi du 10 juillet 1965<br>
+  <a href="rgpd.html" style="cursor:pointer">🔒 Politique de confidentialité (RGPD)</a></p>
+  <p style="margin-top:8px; opacity:.5; font-size:.75rem">Version brouillon — Résidences La V. © 2025</p>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCRIPTS
+     1. data/google_sheet_config.js -> identifiant du Google Sheet
+                                 contenant toutes les données du site
+                                 (voir ce fichier pour la configuration)
+     2. data/google_drive_config.js -> identifiant du dossier Google
+                                 Drive affiché sur la page Documents
+     3. assets/js/data.js    -> accès aux données (lecture du Google
+                                 Sheet ci-dessus, onglet par onglet)
+     4. assets/js/render.js  -> gabarits HTML pour chaque bloc dynamique
+     5. assets/js/app.js     -> FAQ, formulaires, chargement des données
+                                 de LA PAGE COURANTE (voir data-page sur
+                                 la balise <body> en haut de ce fichier)
+     Ces 5 lignes doivent être présentes, identiques, sur CHAQUE page
+     du site.
+     ════════════════════════════════════════════════════════════════ -->
+<script src="data/google_sheet_config.js"></script>
+<script src="data/google_drive_config.js"></script>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

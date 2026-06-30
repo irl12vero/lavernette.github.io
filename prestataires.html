@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestataires — Résidences La V.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="prestataires">
+
+<!-- ════════════════════════════════════════════════════════════════
+     BANDEAU FLASH INFOS
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Le contenu défilant (#flash-ticker) est rempli par
+     assets/js/render.js -> render_flash_infos() au chargement de
+     CHAQUE page (voir tout en bas de ce fichier).
+     Pour modifier les infos qui défilent : onglet "flash_infos" du Google Sheet
+     ════════════════════════════════════════════════════════════════ -->
+<div class="flash-infos">
+  <div class="flash-infos-inner">
+    <div class="flash-label">⚡ Flash Infos</div>
+    <div class="flash-items">
+      <div class="flash-ticker skeleton" id="flash-ticker"></div>
+    </div>
+    <a class="flash-btn" href="flashinfos.html" title="Voir tous les Flash Infos">Voir tout →</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     EN-TÊTE + MENU DE NAVIGATION
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Pour ajouter/retirer un lien de menu : modifier le bloc <nav>
+     ci-dessous, DANS CHAQUE fichier .html (pas de fichier commun).
+     Le lien de la page actuellement affichée porte class="active".
+     ════════════════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><img src="assets/img/logo/logo.png" alt="Logo Résidences La V." class="logo-icon-img"></div>
+      <div class="logo-text">
+        <h1>Résidences La V.</h1>
+        <p>Espace copropriétaires privé</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="flashinfos.html">⚡ Flash Infos</a>
+      <a href="urgences.html">🚨 Urgences</a>
+      <a href="eau.html">💧 Eau du canal</a>
+      <a href="stationnement.html">🚗 Stationnement</a>
+      <a href="dechets.html">🗑️ Déchets</a>
+      <a href="prestataires.html" class="active">🔧 Prestataires</a>
+      <a href="documents.html">📁 Documents</a>
+      <a href="bureau.html">👥 Bureau</a>
+      <a href="annuaire.html">📒 Annuaire</a>
+      <a href="faq.html">❓ FAQ</a>
+      <a href="contact.html">✉️ Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════ PAGE : PRESTATAIRES ══════════════════ -->
+<!-- Fichier : prestataires.html — modifiez uniquement le contenu ci-dessous pour cette page. -->
+<div class="page active">
+  <div class="section">
+    <span class="section-titre">🔧 Prestataires de la copropriété</span>
+
+    <!-- Bloc : Jardinier — Périmètre d'intervention — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Jardinier — Périmètre d'intervention</h3>
+      <ul>
+        <li><strong>Entreprise :</strong> [À compléter]</li>
+        <li><strong>Passage :</strong> [Fréquence à compléter]</li>
+        <li><strong>Périmètre :</strong> Espaces verts communs uniquement (allées, haies communes, pelouses centrales)</li>
+        <li><strong>Hors périmètre :</strong> Jardins privatifs — à la charge de chaque propriétaire</li>
+        <li><strong>Important :</strong> Ne pas solliciter le prestataire directement — passer uniquement par le bureau</li>
+      </ul>
+    </div>
+
+    <!-- Bloc : Autres contrats en cours — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Autres contrats en cours</h3>
+      <ul>
+        <li>Assurance copropriété : [Assureur — à compléter]</li>
+        <li>Entretien espaces communs : [Prestataire — à compléter]</li>
+      </ul>
+    </div>
+
+    <!-- Bloc : Artisans recommandés Non contractuel — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Artisans recommandés <span class="tag tag-or">Non contractuel</span></h3>
+      <p style="margin-bottom:10px; font-size:.88rem; color:#666">Liste indicative sur recommandations de résidents. La copropriété n'engage pas sa responsabilité.</p>
+      <ul id="prestataires-artisans-liste">
+        <li class="skeleton" style="height:18px; list-style:none"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PIED DE PAGE
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <p><strong>Résidences La V.</strong> — Espace copropriétaires privé</p>
+  <p style="margin-top:6px">Informations validées par le bureau de copropriété — Loi du 10 juillet 1965<br>
+  <a href="rgpd.html" style="cursor:pointer">🔒 Politique de confidentialité (RGPD)</a></p>
+  <p style="margin-top:8px; opacity:.5; font-size:.75rem">Version brouillon — Résidences La V. © 2025</p>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCRIPTS
+     1. data/google_sheet_config.js -> identifiant du Google Sheet
+                                 contenant toutes les données du site
+                                 (voir ce fichier pour la configuration)
+     2. data/google_drive_config.js -> identifiant du dossier Google
+                                 Drive affiché sur la page Documents
+     3. assets/js/data.js    -> accès aux données (lecture du Google
+                                 Sheet ci-dessus, onglet par onglet)
+     4. assets/js/render.js  -> gabarits HTML pour chaque bloc dynamique
+     5. assets/js/app.js     -> FAQ, formulaires, chargement des données
+                                 de LA PAGE COURANTE (voir data-page sur
+                                 la balise <body> en haut de ce fichier)
+     Ces 5 lignes doivent être présentes, identiques, sur CHAQUE page
+     du site.
+     ════════════════════════════════════════════════════════════════ -->
+<script src="data/google_sheet_config.js"></script>
+<script src="data/google_drive_config.js"></script>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

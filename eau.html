@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eau du canal — Résidences La V.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="eau">
+
+<!-- ════════════════════════════════════════════════════════════════
+     BANDEAU FLASH INFOS
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Le contenu défilant (#flash-ticker) est rempli par
+     assets/js/render.js -> render_flash_infos() au chargement de
+     CHAQUE page (voir tout en bas de ce fichier).
+     Pour modifier les infos qui défilent : onglet "flash_infos" du Google Sheet
+     ════════════════════════════════════════════════════════════════ -->
+<div class="flash-infos">
+  <div class="flash-infos-inner">
+    <div class="flash-label">⚡ Flash Infos</div>
+    <div class="flash-items">
+      <div class="flash-ticker skeleton" id="flash-ticker"></div>
+    </div>
+    <a class="flash-btn" href="flashinfos.html" title="Voir tous les Flash Infos">Voir tout →</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     EN-TÊTE + MENU DE NAVIGATION
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     Pour ajouter/retirer un lien de menu : modifier le bloc <nav>
+     ci-dessous, DANS CHAQUE fichier .html (pas de fichier commun).
+     Le lien de la page actuellement affichée porte class="active".
+     ════════════════════════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><img src="assets/img/logo/logo.png" alt="Logo Résidences La V." class="logo-icon-img"></div>
+      <div class="logo-text">
+        <h1>Résidences La V.</h1>
+        <p>Espace copropriétaires privé</p>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="flashinfos.html">⚡ Flash Infos</a>
+      <a href="urgences.html">🚨 Urgences</a>
+      <a href="eau.html" class="active">💧 Eau du canal</a>
+      <a href="stationnement.html">🚗 Stationnement</a>
+      <a href="dechets.html">🗑️ Déchets</a>
+      <a href="prestataires.html">🔧 Prestataires</a>
+      <a href="documents.html">📁 Documents</a>
+      <a href="bureau.html">👥 Bureau</a>
+      <a href="annuaire.html">📒 Annuaire</a>
+      <a href="faq.html">❓ FAQ</a>
+      <a href="contact.html">✉️ Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════ PAGE : EAU DU CANAL ══════════════════ -->
+<!-- Fichier : eau.html — modifiez uniquement le contenu ci-dessous pour cette page. -->
+<div class="page active">
+  <div class="section">
+    <span class="section-titre">💧 Eau du canal</span>
+
+    <!-- Bloc : Fonctionnement général À lire — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Fonctionnement général <span class="tag tag-or">À lire</span></h3>
+      <p>La résidence dispose d'un réseau d'eau du canal utilisé pour l'arrosage. Ce réseau est <strong>distinct de l'eau potable et non potable</strong>.</p>
+      <ul style="margin-top:10px">
+        <li>Eau non potable — usage arrosage uniquement</li>
+        <li>Gestion collective assurée par le bureau</li>
+        <li>Période d'ouverture : avril à octobre (dates affichées chaque année)</li>
+      </ul>
+    </div>
+
+    <!-- Bloc : 📸 Guide pratique illustré — Relevé du compteur — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>📸 Guide pratique illustré — Relevé du compteur</h3>
+      <p style="font-size:.88rem; color:#666; margin-bottom:16px">Suivez ces étapes lors du relevé demandé par le bureau en début et fin de saison.</p>
+
+      <div class="etape">
+        <div class="etape-num">1</div>
+        <div class="etape-contenu">
+          <h4>Localiser votre compteur</h4>
+          <p>Votre compteur individuel se situe [emplacement à préciser — ex : regard au sol devant votre maison, côté jardin].</p>
+          <img src="assets/img/guide-eau/releve-1-localiser.png" alt="Exemple de regard compteur ouvert" style="width:100%; max-width:400px; border-radius:6px; margin-top:10px">
+        </div>
+      </div>
+
+      <div class="etape">
+        <div class="etape-num">2</div>
+        <div class="etape-contenu">
+          <h4>Lire l'index</h4>
+          <p>Relevez les chiffres noirs (m³) — ignorez les chiffres rouges (décimales). Notez le relevé avec la date.</p>
+          <img src="assets/img/guide-eau/releve-2-index.png" alt="Gros plan cadran compteur - lecture chiffres noirs" style="width:100%; max-width:400px; border-radius:6px; margin-top:10px">
+        </div>
+      </div>
+
+      <div class="etape">
+        <div class="etape-num">3</div>
+        <div class="etape-contenu">
+          <h4>Transmettre le relevé</h4>
+          <p>Envoyez votre relevé au bureau via le formulaire de contact ou par email à [adresse@placeholder.fr] avec : votre numéro de lot, l'index relevé, la date.</p>
+        </div>
+      </div>
+
+      <div class="etape">
+        <div class="etape-num">4</div>
+        <div class="etape-contenu">
+          <h4>Compteur inaccessible ou bloqué ?</h4>
+          <p>Ne forcez pas. Signalez-le au bureau. Un membre du bureau interviendra avec vous.</p>
+          <img src="assets/img/guide-eau/releve-4-bloque.png" alt="Exemple compteur bloqué ou regard inondé" style="width:100%; max-width:400px; border-radius:6px; margin-top:10px">
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc : 📸 Guide pratique illustré — Remplacement du compteur — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>📸 Guide pratique illustré — Remplacement du compteur</h3>
+      <p style="font-size:.88rem; color:#666; margin-bottom:16px">Le remplacement est effectué uniquement par le bureau ou un prestataire mandaté.</p>
+
+      <div class="etape">
+        <div class="etape-num">1</div>
+        <div class="etape-contenu">
+          <h4>Fermer la vanne amont</h4>
+          <p>Avant tout remplacement, fermer la vanne individuelle en amont du compteur (quart de tour vers la droite = fermé).</p>
+          <img src="assets/img/guide-eau/remplacement-1-vanne.png" alt="Vanne individuelle - position ouverte ou fermée" style="width:100%; max-width:400px; border-radius:6px; margin-top:10px">
+        </div>
+      </div>
+
+      <div class="etape">
+        <div class="etape-num">2</div>
+        <div class="etape-contenu">
+          <h4>Déposer et remplacer le compteur</h4>
+          <p>Dévisser les deux raccords union. Poser le nouveau compteur dans le sens du flux (flèche gravée sur le corps du compteur).</p>
+          <img src="assets/img/guide-eau/remplacement-2-pose.png" alt="Sens de pose - flèche flux sur compteur" style="width:100%; max-width:400px; border-radius:6px; margin-top:10px">
+        </div>
+      </div>
+
+      <div class="etape">
+        <div class="etape-num">3</div>
+        <div class="etape-contenu">
+          <h4>Rouvrir et vérifier l'étanchéité</h4>
+          <p>Rouvrir lentement la vanne. Vérifier l'absence de fuite sur les raccords. Relever l'index à zéro et le communiquer au bureau.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc : ⚠️ En cas de problème : fuite, pression anormale — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>⚠️ En cas de problème : fuite, pression anormale</h3>
+      <ul>
+        <li><strong>Fuite sur canalisation commune</strong> → fermer la vanne générale + prévenir le bureau immédiatement</li>
+        <li><strong>Fuite sur votre installation privative</strong> → fermer votre vanne individuelle + contacter un plombier</li>
+        <li><strong>Pression anormale</strong> → ne pas intervenir, signaler au bureau</li>
+        <li><strong>Compteur qui tourne en dehors des périodes d'arrosage</strong> → fuite probable, signaler au bureau</li>
+      </ul>
+      <img src="assets/img/guide-eau/incident-vannes.png" alt="Localisation vanne générale et vanne individuelle type" style="width:100%; max-width:400px; border-radius:6px; margin-top:14px">
+    </div>
+
+    <!-- Bloc : Vanne générale — modifiez le texte ci-dessous directement dans ce fichier -->
+        <div class="content-block">
+      <h3>Vanne générale</h3>
+      <p>La vanne générale se situe <strong>[emplacement à compléter par le bureau]</strong>.</p>
+      <p style="margin-top:8px; color: var(--rouge); font-weight:600">⚠️ Ne jamais fermer la vanne générale sans en informer le bureau, sauf urgence absolue.</p>
+    </div>
+
+    <div class="encadre-loi">
+      <strong>Cadre légal :</strong> Conformément à la loi n°65-557 du 10 juillet 1965 et au règlement de copropriété, l'eau du canal constitue un équipement commun. Sa gestion et son entretien relèvent de la responsabilité collective. Tout incident sur les parties communes doit être signalé au bureau sans délai.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PIED DE PAGE
+     Présent sur TOUTES les pages (copié-collé identique partout).
+     ════════════════════════════════════════════════════════════════ -->
+<footer>
+  <p><strong>Résidences La V.</strong> — Espace copropriétaires privé</p>
+  <p style="margin-top:6px">Informations validées par le bureau de copropriété — Loi du 10 juillet 1965<br>
+  <a href="rgpd.html" style="cursor:pointer">🔒 Politique de confidentialité (RGPD)</a></p>
+  <p style="margin-top:8px; opacity:.5; font-size:.75rem">Version brouillon — Résidences La V. © 2025</p>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCRIPTS
+     1. data/google_sheet_config.js -> identifiant du Google Sheet
+                                 contenant toutes les données du site
+                                 (voir ce fichier pour la configuration)
+     2. data/google_drive_config.js -> identifiant du dossier Google
+                                 Drive affiché sur la page Documents
+     3. assets/js/data.js    -> accès aux données (lecture du Google
+                                 Sheet ci-dessus, onglet par onglet)
+     4. assets/js/render.js  -> gabarits HTML pour chaque bloc dynamique
+     5. assets/js/app.js     -> FAQ, formulaires, chargement des données
+                                 de LA PAGE COURANTE (voir data-page sur
+                                 la balise <body> en haut de ce fichier)
+     Ces 5 lignes doivent être présentes, identiques, sur CHAQUE page
+     du site.
+     ════════════════════════════════════════════════════════════════ -->
+<script src="data/google_sheet_config.js"></script>
+<script src="data/google_drive_config.js"></script>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
