@@ -58,10 +58,11 @@
  *    le fichier. Rechargez la page documents.html : les deux listes
  *    doivent s'afficher.
  * ────────────────────────────────────────────────────────────────────
+ * répertoire documents : https://drive.google.com/drive/folders/16r4m5_LRRhEPDLj2fdy1gifO06YNf0tH?usp=drive_link
+ * répertoire réglement : https://drive.google.com/drive/folders/1ya07JvV5_s4doCj09nNkonAl8vdBpN2S?usp=drive_link
  */
 window.SITE_CONFIG = window.SITE_CONFIG || {};
 window.SITE_CONFIG.google_drive = {
-  "dossier_id": "VOTRE_ID_DE_DOSSIER_COMPTES_RENDUS",
-  "reglement_dossier_id": "VOTRE_ID_DE_DOSSIER_REGLEMENT",
-  "api_key": "VOTRE_CLE_API_GOOGLE_DRIVE"
+  "dossier_id": "16r4m5_LRRhEPDLj2fdy1gifO06YNf0tH",
+  "reglement_dossier_id": "1ya07JvV5_s4doCj09nNkonAl8vdBpN2S",
 };
