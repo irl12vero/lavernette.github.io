@@ -64,5 +64,5 @@
 window.SITE_CONFIG = window.SITE_CONFIG || {};
 window.SITE_CONFIG.google_drive = {
   "dossier_id": "16r4m5_LRRhEPDLj2fdy1gifO06YNf0tH",
-  "reglement_dossier_id": "1ya07JvV5_s4doCj09nNkonAl8vdBpN2S",
+  "dossier_id_reglements": "1ya07JvV5_s4doCj09nNkonAl8vdBpN2S",
 };
