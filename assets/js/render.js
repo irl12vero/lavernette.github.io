@@ -186,7 +186,8 @@
     const dossierId = cfg1.dossier_id;
 
     render_documents(el1, dossierId1);
-    const el2 = document.getElementById("documents-contenu");
+
+    const el2 = document.getElementById("documents-reglement-contenu");
     if (!el2) return;
 
     const cfg2 = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
