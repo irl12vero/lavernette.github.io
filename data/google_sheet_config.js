@@ -54,8 +54,9 @@
  *    Sheet, allez sur l'onglet concerné, modifiez la ligne, c'est
  *    tout — aucune intervention sur le site n'est nécessaire.
  * ────────────────────────────────────────────────────────────────────
+ * https://docs.google.com/spreadsheets/d/197Q9yisPLEDrQueZqRNnJOWsKw2u_uQs/edit?usp=sharing&ouid=103242975689267458589&rtpof=true&sd=true
  */
 window.SITE_CONFIG = window.SITE_CONFIG || {};
 window.SITE_CONFIG.google_sheet = {
-  "spreadsheet_id": "VOTRE_ID_DE_FICHIER"
+  "spreadsheet_id": "197Q9yisPLEDrQueZqRNnJOWsKw2u_uQs"
 };
