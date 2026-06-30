@@ -178,15 +178,6 @@
   //
   // Configuration requise : voir /data/google_drive_config.js
   // (uniquement l'identifiant du dossier).
-  function render_all_documents() {
-    const el = document.getElementById("documents-contenu");
-    if (!el) return;
-
-    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
-    const dossierId = cfg.dossier_id;
-    render_documents(dossierId,el)
-  }  
-  
   function render_documents(dossierId,el) {
     const el = document.getElementById("documents-contenu");
     if (!el) return;
@@ -221,6 +212,15 @@
       </div>`;
   }
 
+ function render_all_documents() {
+    const el = document.getElementById("documents-contenu");
+    if (!el) return;
+
+    const cfg = (window.SITE_CONFIG && window.SITE_CONFIG.google_drive) || {};
+    const dossierId = cfg.dossier_id;
+    render_documents(dossierId,el)
+  }  
+  
   async function render_dechets_bacs() {
     const data = await window.DataLoader.getData("dechets_bacs");
     const el = document.getElementById("dechets-bacs-grid");
