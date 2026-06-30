@@ -197,12 +197,3 @@
 @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 .data-error { font-size:.82rem; color: var(--rouge); font-style: italic; }
 
-/* Listes de documents issues de Google Drive (page Documents) */
-.drive-files-list { list-style: none; margin: 0; padding: 0 8px; transition: height .2s ease; }
-.drive-file-row { height: 46px; border-bottom: 1px solid var(--gris-bord); }
-.drive-file-row:last-child { border-bottom: none; }
-.drive-file-row a { display: flex; align-items: center; gap: 10px; height: 100%; padding: 0 12px; color: var(--vert-mid); font-weight: 600; font-size: .92rem; text-decoration: none; border-radius: 6px; }
-.drive-file-row a:hover { background: #f0f4f8; }
-.drive-file-icon { flex: none; font-size: 1.1rem; }
-.drive-file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
