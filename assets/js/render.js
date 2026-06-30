@@ -281,7 +281,7 @@
     faq: [render_faq],
     bureau: [render_bureau],
     annuaire: [render_annuaire],
-    documents: [render_all_documents],
+    documents: [render_documents],
     dechets: [render_dechets_bacs, render_dechets_points_depot],
     prestataires: [render_prestataires_artisans]
   };
