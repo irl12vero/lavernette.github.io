@@ -46,13 +46,40 @@ function envoyerFormulaire() {
   const lot = document.getElementById("f-lot").value;
   const email = document.getElementById("f-email").value;
   const msg = document.getElementById("f-message").value;
+  const faq = document.getElementById("f-faq").checked;
   const rgpd = document.getElementById("f-rgpd").checked;
   if (!cat || !lot || !email || !msg) { alert("Merci de remplir tous les champs obligatoires."); return; }
   if (!rgpd) { alert("Merci d'accepter l'utilisation de vos données pour continuer."); return; }
-  alert("Votre question a bien été envoyée.\nLe bureau vous répondra sous 3 à 5 jours ouvrés.\n\n(Version brouillon : envoi simulé)");
-  ["f-categorie", "f-lot", "f-email", "f-message"].forEach((id) => (document.getElementById(id).value = ""));
-  document.getElementById("f-rgpd").checked = false;
-  document.getElementById("btn-envoyer").disabled = true;
+
+  const endpoint = window.SITE_CONFIG && window.SITE_CONFIG.contact_form_endpoint;
+  const btn = document.getElementById("btn-envoyer");
+
+  if (!endpoint || endpoint === "URL_DE_VOTRE_WEB_APP_ICI") {
+    alert("Le formulaire n'est pas encore configuré (voir data/google_contact_config.js).");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Envoi en cours...";
+
+  fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" }, // évite une requête preflight bloquée par Apps Script
+    body: JSON.stringify({ categorie: cat, lot: lot, email: email, message: msg, faq: faq }),
+  })
+    .then(() => {
+      alert("Votre question a bien été envoyée.\nLe bureau vous répondra sous 3 à 5 jours ouvrés.");
+      ["f-categorie", "f-lot", "f-email", "f-message"].forEach((id) => (document.getElementById(id).value = ""));
+      document.getElementById("f-faq").checked = false;
+      document.getElementById("f-rgpd").checked = false;
+    })
+    .catch(() => {
+      alert("Une erreur est survenue lors de l'envoi. Merci de réessayer, ou de nous contacter directement par email.");
+    })
+    .finally(() => {
+      btn.textContent = "Envoyer ma question →";
+      btn.disabled = false;
+    });
 }
 
 // --------------------------------------------------------------------

@@ -206,7 +206,7 @@
         <iframe
           src="${esc(url)}"
           title="Documents — dossier Google Drive"
-          style="width:100%; height:520px; border:0; display:block;"
+          style="width:100%; height:260px; border:0; display:block;"
           loading="lazy">
         </iframe>
       </div>`;
@@ -240,7 +240,7 @@
         <iframe
           src="${esc(url)}"
           title="Règlements — dossier Google Drive"
-          style="width:100%; height:520px; border:0; display:block;"
+          style="width:100%; height:260px; border:0; display:block;"
           loading="lazy">
         </iframe>
       </div>`;
