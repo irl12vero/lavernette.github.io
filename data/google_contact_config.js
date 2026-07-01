@@ -17,6 +17,7 @@
  * 3) Déployez (Déployer > Nouveau déploiement > Application Web,
  *    "Exécuter en tant que : Moi", "Qui a accès : Tout le monde").
  * 4) Copiez l'URL de déploiement obtenue et collez-la ci-dessous.
+ * URL : https://script.google.com/macros/s/AKfycbxNUShIz2h7ddK7VVfVK5NDsdnfGrh2k4l3bkNKJVyKf8KGaZJmDWZjtIgrZQb6p35e/exec
  */
 window.SITE_CONFIG = window.SITE_CONFIG || {};
-window.SITE_CONFIG.contact_form_endpoint = "URL_DE_VOTRE_WEB_APP_ICI";
+window.SITE_CONFIG.contact_form_endpoint = "https://script.google.com/macros/s/AKfycbxNUShIz2h7ddK7VVfVK5NDsdnfGrh2k4l3bkNKJVyKf8KGaZJmDWZjtIgrZQb6p35e/exec";
