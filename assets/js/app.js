@@ -67,7 +67,7 @@ function envoyerFormulaire() {
     mode: "no-cors", // les Web Apps Apps Script bloquent souvent la lecture de la réponse par le navigateur ;
                       // en mode no-cors la requête part bien et s'exécute côté Google, on ne lit juste pas la réponse
     headers: { "Content-Type": "text/plain;charset=utf-8" }, // évite une requête preflight bloquée par Apps Script
-    body: JSON.stringify({ categorie: cat, lot: lot, email: email, message: msg, faq: faq }),
+    body: JSON.stringify({ type: "contact", categorie: cat, lot: lot, email: email, message: msg, faq: faq }),
   })
     .then(() => {
       alert("Votre question a bien été envoyée.\nLe bureau vous répondra sous 3 à 5 jours ouvrés.");
@@ -90,20 +90,55 @@ function envoyerFormulaire() {
 function envoyerAnnuaire() {
   const lot = document.getElementById("a-lot").value;
   const nom1 = document.getElementById("a-nom1").value;
+  const nom2 = document.getElementById("a-nom2").value;
   const annee = document.getElementById("a-annee").value;
+  const autres = document.getElementById("a-autres").value;
   const rgpd = document.getElementById("a-rgpd").checked;
   const visible = document.getElementById("a-visible").checked;
   if (!lot || !nom1 || !annee) { alert("Merci de remplir les champs obligatoires : lot, année, nom du résident 1."); return; }
   if (!rgpd) { alert("Merci d'accepter l'utilisation de vos données pour continuer."); return; }
   if (!visible) { alert("Merci de cocher la case de visibilité pour apparaître dans l'annuaire."); return; }
-  alert("Votre demande d'inscription a bien été envoyée au bureau.\nVotre fiche sera ajoutée sous 5 jours ouvrés.\n\n(Version brouillon : envoi simulé)");
-  ["a-lot", "a-annee", "a-nom1", "a-nom2", "a-autres"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.value = "";
-  });
-  document.getElementById("a-rgpd").checked = false;
-  document.getElementById("a-visible").checked = false;
-  document.getElementById("btn-annuaire").disabled = true;
+
+  const endpoint = window.SITE_CONFIG && window.SITE_CONFIG.contact_form_endpoint;
+  const btn = document.getElementById("btn-annuaire");
+
+  if (!endpoint || endpoint === "URL_DE_VOTRE_WEB_APP_ICI") {
+    alert("Le formulaire n'est pas encore configuré (voir data/google_contact_config.js).");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Envoi en cours...";
+
+  fetch(endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      type: "annuaire",
+      lot: lot,
+      nom1: nom1,
+      nom2: nom2,
+      annee: annee,
+      autres: autres,
+    }),
+  })
+    .then(() => {
+      alert("Votre demande d'inscription a bien été envoyée au bureau.\nVotre fiche sera ajoutée sous 5 jours ouvrés.");
+      ["a-lot", "a-annee", "a-nom1", "a-nom2", "a-autres"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+      document.getElementById("a-rgpd").checked = false;
+      document.getElementById("a-visible").checked = false;
+    })
+    .catch(() => {
+      alert("Une erreur est survenue lors de l'envoi. Merci de réessayer, ou de nous contacter directement par email.");
+    })
+    .finally(() => {
+      btn.textContent = "Envoyer ma demande d'inscription →";
+      btn.disabled = false;
+    });
 }
 
 // --------------------------------------------------------------------

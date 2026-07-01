@@ -29,16 +29,34 @@ Copiez-collez le code ci-dessous dans `Code.gs`, puis **remplacez**
 `bureau@votre-domaine.fr` par la vraie adresse email du bureau de
 copropriété (ligne indiquée par `// <-- À MODIFIER`).
 
+Ce code gère **les deux formulaires du site** : celui de la page Contact
+et celui de la page Annuaire (inscription d'un copropriétaire). Chaque
+formulaire écrit dans son propre onglet du Google Sheet et déclenche son
+propre email de notification.
+
 ```javascript
 function doPost(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var data = JSON.parse(e.postData.contents);
+  var destinataire = 'bureau@votre-domaine.fr'; // <-- À MODIFIER
+
+  if (data.type === 'annuaire') {
+    traiterAnnuaire(ss, data, destinataire);
+  } else {
+    traiterContact(ss, data, destinataire);
+  }
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function traiterContact(ss, data, destinataire) {
   var sheet = ss.getSheetByName('messages');
   if (!sheet) {
     sheet = ss.insertSheet('messages');
     sheet.appendRow(['Date', 'Catégorie', 'Lot', 'Email', 'Message', 'Autorise FAQ']);
   }
-
-  var data = JSON.parse(e.postData.contents);
 
   sheet.appendRow([
     new Date(),
@@ -48,8 +66,6 @@ function doPost(e) {
     data.message || '',
     data.faq ? 'Oui' : 'Non'
   ]);
-
-  var destinataire = 'bureau@votre-domaine.fr'; // <-- À MODIFIER
 
   MailApp.sendEmail({
     to: destinataire,
@@ -62,10 +78,37 @@ function doPost(e) {
       'Message :\n' + (data.message || '-') + '\n\n' +
       '(Le message est aussi enregistré dans l\'onglet "messages" du Google Sheet.)'
   });
+}
 
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: 'ok' }))
-    .setMimeType(ContentService.MimeType.JSON);
+function traiterAnnuaire(ss, data, destinataire) {
+  var sheet = ss.getSheetByName('demandes_annuaire');
+  if (!sheet) {
+    sheet = ss.insertSheet('demandes_annuaire');
+    sheet.appendRow(['Date', 'Lot', 'Nom 1', 'Nom 2', 'Année d\'emménagement', 'Autres infos']);
+  }
+
+  sheet.appendRow([
+    new Date(),
+    data.lot || '',
+    data.nom1 || '',
+    data.nom2 || '',
+    data.annee || '',
+    data.autres || ''
+  ]);
+
+  MailApp.sendEmail({
+    to: destinataire,
+    subject: 'Nouvelle demande d\'inscription à l\'annuaire — Lot ' + (data.lot || '?'),
+    body:
+      'Une nouvelle demande d\'inscription à l\'annuaire a été envoyée depuis le site.\n\n' +
+      'Lot : ' + (data.lot || '-') + '\n' +
+      'Résident 1 : ' + (data.nom1 || '-') + '\n' +
+      'Résident 2 : ' + (data.nom2 || '-') + '\n' +
+      'Année d\'emménagement : ' + (data.annee || '-') + '\n' +
+      'Autres infos : ' + (data.autres || '-') + '\n\n' +
+      '(Cette demande est aussi enregistrée dans l\'onglet "demandes_annuaire" du Google Sheet.\n' +
+      'Pensez à recopier la ligne validée dans l\'onglet "annuaire" pour qu\'elle apparaisse sur le site.)'
+  });
 }
 ```
 
