@@ -64,6 +64,8 @@ function envoyerFormulaire() {
 
   fetch(endpoint, {
     method: "POST",
+    mode: "no-cors", // les Web Apps Apps Script bloquent souvent la lecture de la réponse par le navigateur ;
+                      // en mode no-cors la requête part bien et s'exécute côté Google, on ne lit juste pas la réponse
     headers: { "Content-Type": "text/plain;charset=utf-8" }, // évite une requête preflight bloquée par Apps Script
     body: JSON.stringify({ categorie: cat, lot: lot, email: email, message: msg, faq: faq }),
   })
